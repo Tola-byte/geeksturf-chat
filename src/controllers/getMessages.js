@@ -68,20 +68,7 @@ export const createConversationThread = async (req, res) => {
             console.log("saved message")
         })
 
-        io.to(user1).emit('newMessage', {
-            user_id: user1,
-            thread_id: thread.thread_id,
-            content: messageContent,
-            reply_to: reply_to || null
-        });
-
-        io.to(user2).emit('newMessage', {
-            user_id: user1, // Sender
-            thread_id: thread.thread_id,
-            content: messageContent,
-            reply_to: reply_to || null
-        });
-
+        io.emit('newMessage', { data: newMessage });
 
         res.status(201).json({
             message: "Message added to conversation",
