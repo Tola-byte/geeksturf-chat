@@ -64,6 +64,7 @@ export const createConversationThread = async (req, res) => {
             reply_to : reply_to || null
         })
 
+        // na wetin i change be this.
         await newMessage.save().then(() => {
             console.log("saved message")
         })
